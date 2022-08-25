@@ -1,0 +1,3014 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+    <meta charset="utf-8">
+    <title>Map</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="format.css"></script>
+
+    <style>
+
+    body { margin: 0; padding: 0; }
+    #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+
+    </style>
+
+    </head>
+
+    <body>
+
+        <style>
+
+            #map {
+            position: fixed;
+            width: 75%; 
+            }
+
+            #buttons {  
+            opacity: 1; 
+            }
+    
+            #features {
+            width: 25%;
+            margin-left: 75%;  
+            color: white;
+            overflow-y: scroll;
+            background-color: rgb(0, 0, 0);
+            opacity: 1; 
+            }
+    
+            section {
+            padding: 10px 50px;
+            line-height: 25px;
+            color:black;  
+            background-color: white;
+            height: 100%;
+            }
+
+            .modal-content{
+            color: black;
+            background-color: white; 
+            box-shadow: 100px;
+            border-radius: 0%;  
+            }
+
+            .btn-outline-dark {
+            background-color: white;
+            border-color: white;
+            border-radius: 0%; 
+            color: black;
+            box-shadow: 50px;
+            width: 95%;
+            text-align: left; 
+            }
+
+            .btn-outline-dark2 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:150px;
+            left: 650px;
+            }
+
+            .btn-outline-dark3 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:225px;
+            left: 525px;
+            }
+
+            .btn-outline-dark4 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:250px;
+            left: 675px;
+            }
+
+            .btn-outline-dark5 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:100px;
+            left: 175px;
+            }
+
+            .btn-outline-dark6 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:450px;
+            left: 850px;
+            }
+
+            .btn-outline-dark7 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:350px;
+            left: 625px;
+            }
+
+            .btn-outline-dark8 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:400px;
+            left: 650px;
+            }
+
+            .btn-outline-dark9 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:330px;
+            left: 650px;
+            }
+
+            .btn-outline-dark10 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:315px;
+            left: 625px;
+            }
+
+            .btn-outline-dark11 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:275px;
+            left: 600px;
+            }
+
+            .btn-outline-dark12 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:300px;
+            left: 560px;
+            }
+
+            .btn-outline-dark13 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:300px;
+            left: 650px;
+            }
+
+            .btn-outline-dark14 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:300px;
+            left: 600px;
+            }
+
+            .btn-outline-dark15 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:180px;
+            left: 640px;
+            }
+
+            .btn-outline-dark16 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:575px;
+            left: 115px;
+            }
+
+            .btn-outline-dark17 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:550px;
+            left: 135px;
+            }
+
+            .btn-outline-dark18 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:275px;
+            left: 625px;
+            }
+
+            .btn-outline-dark19 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:360px;
+            left: 650px;
+            }
+
+            .btn-outline-dark20 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:300px;
+            left: 475px;
+            }
+
+            .btn-outline-dark21 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:335px;
+            left: 515px;
+            }
+
+            .btn-outline-dark22 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:350px;
+            left: 595px;
+            }
+
+            .btn-outline-dark23 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:650px;
+            left: 350px;
+            }
+
+            .btn-outline-dark24 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:525px;
+            left: 300px;
+            }
+            
+            .btn-outline-dark25 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:325px;
+            left: 300px;
+            }
+
+            .btn-outline-dark26 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:300px;
+            left: 525px;
+            }
+
+            .btn-outline-dark27 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:325px;
+            left: 550px;
+            }
+
+            .btn-outline-dark28 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:250px;
+            left: 525px;
+            }
+
+            .btn-outline-dark29 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom:350px;
+            left: 550px;
+            }
+
+            .btn-outline-dark30 {
+            background-color: orange;
+            border-color: white;
+            border-radius: 50%; 
+            color: grey;
+            box-shadow: 50px;
+            width: 0.25%;
+            height: 3%;
+            text-align: center; 
+            position: fixed; 
+            bottom: 325px;
+            left: 600px;
+            }
+            
+    
+        </style>
+
+        <div id="map"></div>
+
+        <div id="features">
+
+        <section id="Gilles">
+
+        <h3 style="padding-left:12px"><b>Tripoli, Lebanon</b></h3>
+        <p> </p>
+        <h5 style="padding-left:12px"><b>Crusader</b></h5> 
+
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal1" style="font-size: 14px;">
+            Raymond St.Gilles Citadel
+        </button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal1">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">Raymond St.Gilles Citadel; c. 1103-04</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+        
+                        <iframe width="1100px" height="500px" 
+                        src="https://www.youtube.com/embed/s6vdUvakGtY?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                <p> 
+                <b style="font-size: 16px;">Style: Crusader, Mamluk, Ottoman</b>       
+                </p> 
+                <p style="font-size: 14px;">
+                    Originally built during the early 12th century, the original structure was built as a Crusader fortress against incoming attacks from both the land and sea. Burned down in 1297, it was partially rebuilt by and was again renovated by Ottoman governor Mustafa Agha Barbar.
+                    Little of the original Crusader structure remains although the graves of some Crusader knights are still present. The castle is used today as a Lebanese army barracks as well as housing a small archeology museum. 
+                </p>
+
+                </div>
+            </div>
+            </div>
+        </div>
+        
+        </section>
+ 
+
+        <div id="features"> 
+
+        <section id="Taynal"> 
+
+        <h5 style="padding-left:12px"><b>Islamic</b></h5> 
+
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal2" style="font-size: 14px;">
+            Al Amir Taynal Mosque
+        </button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal2">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">Al Amir Taynal Mosque; c. AD 1336 built by Tripolean Governor, Amir Taynal</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+        
+                        <iframe width="1100px" height="500px" 
+                        src="https://www.youtube.com/embed/e_z9jTOnCbY?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                
+                <p>
+                    <b style="font-size: 16px;">Style: Mamluk</b>    
+                </p> 
+                <p style="font-size: 14px;">
+                    Once standing amongst the citrus orchards of Tripoli, the mosque is today surrounded by a labyrinth of late 20th century apartment blocks. When visiting the city, Arab explorer Ibn Battutah describes the exuberant character of the mosque’s benefactor which can perhaps explain the mosque’s flamboyant style in comparison to the more austere Mamluk architecture visible in other parts of the city. Interestingly, the shape of the mosque and some of its architectural features suggest the original site housed a Church or a Greek temple. Considered one of Tripoli’s most architecturally and historically significant mosques, Taynal mosque is today distinguishable by its sweet wrapper like green and white stripped domes.
+                </p>
+
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </section>
+
+    <div id="features">
+         
+    <section id="Burtasi">
+
+    <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal3" style="font-size: 14px;">
+        Al Burtasi Mosque
+    </button>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal3">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+    
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">Al Burtasi Mosque; c. 1381</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+    
+                    <iframe width="1100px" height="500px" 
+                    src="https://www.youtube.com/embed/99Ggpn6b0mU?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                    </iframe>
+            
+            <p>   
+                <b style="font-size: 16px;">Style: Mamluk</b>  
+            </p>
+            <p style="font-size: 14px;">
+                Considered one of Tripoli’s finest examples of Mamluk architecture, the elegant structure with its signature black and white mamluk marble striping on the exterior is located just outside the souk area and next to the Abu Ali River. 
+                Before the great flood of 1955, there was a bridge near traversing the river which no longer exists. The mosque today sits near to the large flee market which extends from the main souk area next to the river towards the sea area. 
+            </p>
+
+            </div>
+        </div>
+        </div>
+    </div>
+
+    </section>
+
+    <div id="features">
+         
+        <section id="Shokr">
+
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal4" style="font-size: 14px;">
+            Al Shokr Mosque, Mina
+        </button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal4">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+    
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">Al Shokr Mosque, Mina; c. 2008</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+    
+                    <iframe width="1100px" height="500px" 
+                    src="https://www.youtube.com/embed/D6FlCmIZcug?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                    </iframe>
+            
+            <p>   
+                <b style="font-size: 16px;">Style: Islamic</b>  
+            </p> 
+            <p style="font-size: 14px;">
+                Built as a smaller replicate of the Mohammad Al-Amin Mosque in Beirut’s downtown, the mosque occupies a position leading into the port area from the south. Like its larger Beiruti counterpart, the mosque closely resembles the Sultan Ahmet mosque in Istanbul and is testament to the power of the Sunni fiefdoms and their influence in Tripoli.
+            </p>
+
+            </div>
+            </div>
+            </div>
+        </div>
+
+        </section>
+
+    <div id="features">
+         
+    <section id="Fatima">
+
+    <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal5" style="font-size: 14px;">
+        Fatima al Zahraa Mosque
+    </button>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal5">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+    
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">Fatima al Zahraa Mosque; c. 1970's</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+    
+                    <iframe width="1100px" height="500px" 
+                    src="https://www.youtube.com/embed/lYGxVCj1d5o?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                    </iframe>
+            
+            <p>   
+                <b style="font-size: 16px;">Style: Islamic Alawite</b>  
+            </p> 
+            <p style="font-size: 14px;">
+                A relatively non-descript structure other than the fact it bears the tell-tale green dome of an Alawite mosque. 
+                Tripoli is home to a relatively large Alawite population who live in the Jebel Mohsen area of Tripoli. Alawites are found throughout the Syrian coastal region and communities of this secretive sect of Shia Islam are also found in Northern Lebanon.
+            </p>
+
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div id="features">
+
+    </section>
+
+    <section id="Hammam">
+
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal6" style="font-size: 14px;">
+            Hammam Al Abed
+        </button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal6">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">Hammam Al Abed; c. late 17th Century</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+        
+                        <iframe width="1100px" height="500px" 
+                        src="https://www.youtube.com/embed/ye6ptZ34LKA?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                
+                <p>   
+                    <b style="font-size: 16px;">Style: Mamluk</b>  
+                </p> 
+                <p style="font-size: 14px;">
+                    Barely distinguishable from the outside, Hammam Al Abed is the only working Bathhouse remaining in Tripoli today. Hammam’s were always located next to mosques and are based on the Syrian Arab plan. Upon entering the building there is a large entrance area with three large Iwans (halls) which include a high raised dome in the centre. 
+                    The bath house is still frequented by both Tripoleans and tourists today. 
+                        </p>
+
+                </div>
+            </div>
+            </div>
+        </div>
+
+        </section>
+
+    <div id="features">
+
+    <section id="Khayyatin">
+
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal7" style="font-size: 14px;">
+            Khan al Khayyatin
+        </button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal7">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">Khan al Khayyatin; c. 1341</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+        
+                        <iframe width="1100px" height="500px" 
+                        src="https://www.youtube.com/embed/phyF0a8tHKk?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                
+                <p>   
+                    <b style="font-size: 16px;">Style: Mamluk</b>  
+                </p> 
+                <p style="font-size: 14px;">
+                    Literally khan of the Tailors, the khan forms an integral part of the original 14th century souq which was originally a Crusader hospital. The white-washed souq features identically sized shops selling lace and fabrics today. The khan was renovated in the 21st century with the help of a German organisation. </p>
+                    <p>(Source: Archnet)</p>
+
+                </div>
+            </div>
+            </div>
+        </div>
+
+        </section>
+
+        <div id="features">
+
+            <section id="Soap">
+
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal8" style="font-size: 14px;">
+                Khan al Misriyyin - Soap Museum
+            </button>
+            </div>
+    
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal8">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+            
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                    <h4 class="modal-title">Khan al Misriyyin - Soap Museum; c. 1309-56</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+            
+                    <!-- Modal body -->
+                    <div class="modal-body">
+            
+                            <iframe width="1100px" height="500px" 
+                            src="https://www.youtube.com/embed/DIRkUZLbM9g?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                            </iframe>
+                    
+                    <p>   
+                        <b style="font-size: 16px;">Style: Islamic</b>  
+                    </p> 
+                    <p style="font-size: 14px;">
+                        Known as Khan al-Misriyyin, ‘Khan of the Egyptians” the medieval khan served as a trading place between Tripolean and Egyptian Cairene merchants and affirmed the economic and social ties between the two cities. The khan today houses a soap museum and is an integral part of Tripoli’s tourist offerings. 
+                            </p>
+    
+                    </div>
+                </div>
+                </div>
+            </div>
+    
+            </section>
+
+    <div id="features">
+
+        <section id="Qartawiyya">
+
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal9" style="font-size: 14px;">
+            Madrassa al-Qartawiyya
+        </button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal9">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">Madrassa al-Qartawiyya; c. 1316-1326</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+        
+                        <iframe width="1100px" height="500px" 
+                        src="https://www.youtube.com/embed/FtkigjFA0Ug?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                
+                <p>   
+                    <b style="font-size: 16px;">Style: Mamluk</b>  
+                </p>
+                <p style="font-size: 14px;">The largest of a set of six madrassas built around the great mosque under Tripolean governor, Prince Shihab Al Din Qaratay in the 14th century. The madrassa is arguably one of the finest examples of Mamluk architecture in the city with its elegant black and white marble masonry and portico. 
+                    The building’s features take influence from many different civilizations including its Norman style arch and Byzantine style monuments.
+                    The madrassa is today still in use and sits connected to the east wall of the great mosque.
+                </p>
+
+                </div>
+            </div>
+            </div>
+        </div>
+
+        </section>
+
+    <div id="features">
+
+        <section id="Nasiriyya">
+
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal10" style="font-size: 14px;">
+            Madrassa al Nasiriyya
+        </button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal10">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">Madrassa al Nasiriyya; c. 1354-60</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+        
+                        <iframe width="1100px" height="500px" 
+                        src="https://www.youtube.com/embed/N1hONwmwDrA?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                
+                <p>   
+                    <b style="font-size: 16px;">Style: Mamluk</b>  
+                </p> 
+                <p style="font-size: 14px;">
+                    Located next to the great mosque, the only record of who built the madrassa is a medallion above its door attesting the building to Sultan Hasan ibn Muhammad, son of Qala'un. 
+                    The facade is built in alternate courses of black and white stone and is completely enclosed by a framing band of zigzag, a motif that would later be copied for, and is accentuated by, the Mashhad across the street. 
+                    </p>
+
+                </div>
+            </div>
+            </div>
+        </div>
+
+        </section>
+
+    <div id="features">
+
+        <section id="Khatuniyyah">
+
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal11" style="font-size: 14px;">
+            Madrassa Khatuniyyah
+        </button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal11">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title"> Madrassa Khatuniyyah; c. AD 1373-74</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+        
+                        <iframe width="1100px" height="500px" 
+                        src="https://www.youtube.com/embed/xY_3Xu5ZHgU?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                
+                <p>   
+                    <b style="font-size: 16px;">Style: Mamluk Islamic</b>  
+                </p> 
+                <p style="font-size: 14px;">The Madrassa Khatuniyyah stands across from the Madrassah Saqraqiyyah today and is distinguishable by its white dome as opposed to the blue dome of the structure opposite. Built as a funerary madrassah for Arghun Khatun, the freed slave wife of Amir ‘Izz al-Din Aydamir al-Ashrafi. It was noted in the 20th century that a very pious man guarded the structure and did not allow visitors to enter the building although this is no longer the case. </p>
+
+                </div>
+            </div>
+            </div>
+        </div>
+
+        </section> 
+
+        <div id="features">
+
+            <section id="Saqraqiyyah">
+
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal12" style="font-size: 14px;">
+                Madrassa Saqraqiyyah
+            </button>
+            </div>
+    
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal12">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+            
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                    <h4 class="modal-title">Madrassa Saqraqiyyah; c. AD 1359, Sayf al Din Aqturaq</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+            
+                    <!-- Modal body -->
+                    <div class="modal-body">
+            
+                            <iframe width="1100px" height="500px" 
+                            src="https://www.youtube.com/embed/1IjPNTcf9m8?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                            </iframe>
+                    
+                    <p>   
+                        <b style="font-size: 16px;">Style: Mamluk Islamic</b>  
+                    </p> 
+                    <p style="font-size: 14px;">
+                        The madrassa and mosque today stand a short walk from the Evangelical church near the entrance to the old souk (market) area. The domed chambers remain the most important and most distinguishable part of the building today. Unusually for the mosque, there is no minaret although it is stipulated that a tower could have been pulled down many centuries previously. The description above the door attests to the building being intended as a funerary mosque. Two granite columns from ancient remains once stood on each side of the entrance.
+                        </p>
+    
+                    </div>
+                </div>
+                </div>
+            </div>
+    
+            </section>
+
+            <div id="features">
+
+                <section id="Mansouri">
+
+                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal13" style="font-size: 14px;">
+                    Mansouri Great Mosque Tripoli
+                </button>
+                </div>
+        
+                <!-- The Modal -->
+                <div class="modal fade" id="myModal13">
+                    <div class="modal-dialog modal-xl modal-dialog-centered">
+                    <div class="modal-content">
+                
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                        <h4 class="modal-title">Mansouri Great Mosque Tripoli; c. 1294</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                
+                                <iframe width="1100px" height="500px" 
+                                src="https://www.youtube.com/embed/JiSnrDyREdE?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                </iframe>
+                        
+                        <p>   
+                            <b style="font-size: 16px;">Style: Mamluk</b>  
+                        </p> 
+                        <p style="font-size: 14px;">The mosque was built by the sons of the Mamluk sultan who conquered Tripoli from the Crusaders in 1289, Al-Mansur Qalawun. 
+                            The mosque is characterised by a large minaret structure and a central courtyard. Interestingly the qibla (direction of prayer), faces towards the city of Petra in modern day Jordan and not Mecca as in the majority of mosques.
+                            Some debate exists as to whether some elements of the mosque belong to an earlier structure, possibly a Church.
+                            </p>
+        
+                        </div>
+                    </div>
+                    </div>
+                </div>
+        
+                </section>
+
+    <div id="features">
+
+    <section id="Mawlawiyya">
+
+    <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal14" style="font-size: 14px;">
+        Takiyyah al-Mawlawiyya
+    </button>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal14">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+    
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">Takiyyah al-Mawlawiyya; c. 1619</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+    
+                    <iframe width="1100px" height="500px" 
+                    src="https://www.youtube.com/embed/t0v3OchmXBo?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                    </iframe>
+            
+            <p>   
+                <b style="font-size: 16px;">Style: Ottoman, Islamic Sufi</b>  
+            </p> 
+            <p style="font-size: 14px;">
+                Built in the 17th century by an Ottoman governor, the takkiya is the largest of the seven takkiya built outside of Turkey. The importance of the building in sufi Islam is affirmed by descriptions of Islamic traveller and historian, Al-Nabulsi as well as European travellers who visited the building in the 18th and 19th centuries. 
+                The main structure of the building includes an iwan (a rectangular hall), courtyards and a mosque.
+                After extensive damage to the building during the civil war which ended in 1991, the building has recently been renovated by Turkish organisation, TIKA which included extensive landscaping of the riverside. 
+                </p>
+
+            </div>
+        </div>
+        </div>
+    </div>
+
+    </section>
+
+    <div id="features">
+
+        <section id="Mina">
+    
+        <h5 style="padding-left:12px"><b>Christian</b></h5> 
+
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal15" style="font-size: 14px;">
+            Saydet al Najat Church, Mina
+        </button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal15">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">Saydet al Najat Church, Mina; c. 18th century</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+        
+                        <iframe width="1100px" height="500px" 
+                        src="https://www.youtube.com/embed/xYKmKAkHZNg?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                
+                <p>   
+                    <b style="font-size: 16px;">Style: Maronite Christian</b>       
+                </p>
+                <p> <br /> </p>
+                <p style="font-size: 14px;">The Church sits in the middle of the traditionally Christian Mina area. The building is typical of a Maronite Lebanese Church with its simple structure and red roof which marks a change from the traditionally Greek Orthodox churches of the area.
+                    There is also a Franciscan Catholic monastery built in the 18th century currently lived in by two monks not far from the Church. </p>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        </section>
+
+        <div id="features">
+
+            <section id="Georges"> 
+    
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal16" style="font-size: 14px;">
+                St. George’s Orthodox Church Mina
+            </button>
+            </div>
+    
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal16">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+            
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                    <h4 class="modal-title">St. George’s Orthodox Church Mina; c.18th century</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+            
+                    <!-- Modal body -->
+                    <div class="modal-body">
+            
+                            <iframe width="1100px" height="500px" 
+                            src="https://www.youtube.com/embed/KlQka5VqHCA?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                            </iframe>
+                    
+                    <p>   
+                        <b style="font-size: 16px;">Style: Orthodox Christian</b>       
+                    </p> 
+                    <p style="font-size: 14px;">The Church is testament to the Mina’s rich Greek Orthodox history. The church is typical of many Orthodox churches in the Middle East where it has a simple exterior and more ornate interior with vaulted ceilings. Whereas inland areas of the city have seen their Christian population dwindle, there remains a vibrant community in the port area which supports various churches, schools and cultural centres.
+                        The church has recently been repainted in the style of Greek churches with a blue dome and whitewashed walls. 
+                        </p>
+                    </div>
+                </div>
+                </div>
+            </div>
+    
+            </section>
+
+    <div id="features">
+
+            <section id="Joseph"> 
+    
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal17" style="font-size: 14px;">
+                St. Joseph Syriac Catholic Church
+            </button>
+            </div>
+    
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal17">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+            
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                    <h4 class="modal-title">St. Joseph Syriac Catholic Church; c. 1809 (renovated 1938)</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+            
+                    <!-- Modal body -->
+                    <div class="modal-body">
+            
+                            <iframe width="1100px" height="500px" 
+                            src="https://www.youtube.com/embed/KJhWx2Vc_5s?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                            </iframe>
+                    
+                    <p>   
+                        <b style="font-size: 16px;">Style: Christian Oriental</b>       
+                    </p> 
+                    <p style="font-size: 14px;">The Church is located opposite the much larger Greek Orthodox Cathedral. Entrance is by a staircase leading off from the main street. 
+                        The building is architecturally noted for the three coves on either side of the stone building.                                             
+                        </p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+    </section>
+
+    <div id="features">
+
+        <section id="Nicholas"> 
+
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal18" style="font-size: 14px;">
+            St. Nicholas Orthodox Church, Zehrieh
+        </button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal18">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">St. Nicholas Orthodox Church, Zehrieh</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+        
+                        <iframe width="1100px" height="500px" 
+                        src="href?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                
+                <p>   
+                    <b style="font-size: 16px;">Style: Greek Orthodox</b>       
+                </p> 
+                <p style="font-size: 14px;">The Cathedral is the largest located in Tripoli’s traditionally Christian Zehrieh neighbourhood. 
+                    The Cathedral is typical of Orthodox designs with a simple whitewashed facade housing an ornate interior which includes frescoes with Arabic and Greek inscriptions. 
+                    Every Holy Thursday, Christians from Tripoli and the surrounding areas traditionally visit 7 churches to commemorate Christ’s Last Supper.                                                                                             
+                    </p>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="features">
+
+        <section id="Cinema">
+
+        <h5 style="padding-left:12px"><b>20th Century</b></h5> 
+
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal19" style="font-size: 14px;">
+            Empire Cinema
+        </button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal19">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">Empire Cinema; c. 1930’s, built by Mr. Chahine</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+        
+                        <iframe width="1100px" height="500px" 
+                        src="https://www.youtube.com/embed/iPAs65tipFQ?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                
+                <p>   
+                    <b style="font-size: 16px;">Style: Art Deco</b>       
+                </p> 
+                <p style="font-size: 14px;">In its heyday, the cinema played the latest Lebanese and Egyptian films and was the centre of Tripoli’s cultural scene. Cinema played an important role in Tripoli’s cultural scene in the 20th century. Cinemas generally screened either western films or Arab film. A research project led by the Tripoli based Umam initiative has tracked down over 40 cinemas once located in the city and chronicled their history.
+                    The cinema is not currently in use and sits on a central square a short walk from the central Al Manchieh park and clock tower. There are plans to restore the theatre by actor and director, Kassem Istambouli whose aim is to create a cultural centre in the current building. 
+                    </p>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        </section>
+        
+    <div id="features">
+
+        <section id="Levantine"> 
+
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal20" style="font-size: 14px;">
+            Levantine Institute
+        </button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal20">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">Levantine Institute; c. 1930’s</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+        
+                        <iframe width="1100px" height="500px" 
+                        src="https://www.youtube.com/embed/H6tBNCN00bU?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                
+                <p>   
+                    <b style="font-size: 16px;">Style: Art deco</b>       
+                </p>
+                <p> <br /> </p>
+                <p style="font-size: 14px;">The building’s ornate and elegant facade just off the central square are symbolic of the city’s prosperity during the early 20th century which saw the construction of the grand avenues leading to the port area. These new tree lined avenues followed a planned grid system quite unlike the labyrinth of alley ways that make up the old city. Many of the villas and apartment buildings housed the city’s professional classes who chose to move from the older city in the early 20th century and marked a significant change in Tripoli’s urban history. 
+                    The building now housing the Levantine Institute of Arabic. As well as teaching Classical Arabic, the institute is known for teaching the arguably more useful Lebanese dialect of Arabic. The Institute is also increasingly popular in the 21st century as learning Arabic is increasingly difficult in the capital, Beirut where English and French often predominate. 
+                    </p>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </section>
+        
+
+    <div id="features">
+
+        <section id="Evangelical"> 
+
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal21" style="font-size: 14px;">
+            National Evangelical School
+        </button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal21">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">National Evangelical School; c. 1928</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+        
+                        <iframe width="1100px" height="500px" 
+                        src="https://www.youtube.com/embed/1IjPNTcf9m8?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                
+                <p>   
+                    <b style="font-size: 16px;">Style: 20th century</b>       
+                </p> 
+                <p style="font-size: 14px;">Founded as an American Presbyterian college in 1873 during the Ottoman Empire at around the same time as the American University in Beirut (originally the Syrian Protestant College). The language of instruction of the school has always been in English unlike the many Francophone, Catholic institutions in Lebanon. 
+                    The building in the centre of Tripoli today houses the school’s administrative buildings and operates a separate campus outside of Tripoli.                                                        
+                    </p>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </section>
+        
+    <div id="features">
+
+        <section id="Train"> 
+
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal22" style="font-size: 14px;">
+            Train Station
+        </button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal22">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">Train Station; c. 1920’s</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+        
+                        <iframe width="1100px" height="500px" 
+                        src="https://www.youtube.com/embed/M0m4X847UQw?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                 
+                <p style="font-size: 14px;">The train station and depot were built by the French and once connected Tripoli to Aleppo and Turkey in the north and Beirut and Palestine in the South. The train station became defunct in 1975 with the outbreak of the civil war. Several government and non governmental projects have proposed the re-establishment of the railway in Lebanon which would help alleviate Lebanon’s chronic traffic problem. However, buildings encroaching on to the coastal area where the train track once occupied and the current economic crisis have made this idea increasingly unfeasible. 
+                    The station today sits abandoned amidst half industrial, half marsh land near to the sea. Plans were recently proposed to develop the train station into a tourist centre. 
+                    </p>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </section>
+
+    <div id="features">
+
+    <section id="World"> 
+
+    <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal23" style="font-size: 14px;">
+        World Fair, Tripoli 
+    </button>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal23">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+    
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">World Fair, Tripoli; c. 1957-61</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+    
+                    <iframe width="1100px" height="500px" 
+                    src="https://www.youtube.com/embed/5bjAJzwGsvE?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                    </iframe>
+            <p>  
+                <b style="font-size: 18px;">Style: Modernism</b>        
+                <b style="font-size: 18px;">Architect: Oscar Niemeyer</b>        
+            </p> 
+            <p style="font-size: 14px;">Built on a 10,000 hectare site on what was once citrus orchards, the fair was commissioned by then Lebanese premier, Fouad Chaheb as an effort to showcase a new, 20th century Lebanon. 
+                The fair ground never opened due to official corruption and the outbreak of the civil war. The fair is a mix of modernist concrete structures similar to Niemeyer’s newly completed Brasilia as well as incorporating Arab geometric designs into the structures. Structures include an unfinished space museum, a theatre and a helipad.  
+                Most of the concrete structures remain intact today in various states of disrepair. Several projects have been proposed to renovate the world fair. As of writing, the fair is open to all and the grounds are frequented by joggers and tourists alike.                                                                
+                </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    </section>
+            
+                    
+    <div id="features">
+
+        <section id="French">  
+
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal24" style="font-size: 14px;">
+            French Colonial Buildings
+        </button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal24">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">French Colonial Buildings; c. late 19th century</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+        
+                        <iframe width="1100px" height="500px" 
+                        src="https://www.youtube.com/embed/UwlLFgWtPHM?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                
+                <p>   
+                    <b style="font-size: 18px;">Style: French/Ottoman</b>        
+                </p>  
+                <p style="font-size: 14px;">A lack of official records on these buildings makes dating difficult but from the style it can be assumed they date from the late 19th century. Similar styles of buildings can be found in cities throughout the Eastern Mediterranean and combine both French classical styles with Ottoman features such as a stained-glass windows and elaborate window carvings.
+                    Many of the buildings today belong to families that have owned the buildings for many generations despite their shuttered windows and unlived in feel. Because of the size of some of the apartments, many Tripoleans cannot afford to rent the buildings.                                                                                                              
+                    </p>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        </section>
+
+    
+    <div id="features">
+
+        <section id="Karame"> 
+
+        <h5 style="padding-left:12px"><b>Ottoman</b></h5> 
+
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal25" style="font-size: 14px;">
+            Karame Palace
+        </button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal25">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">Karame Palace; c. Late 19th century</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+        
+                        <iframe width="1100px" height="500px" 
+                        src="https://www.youtube.com/embed/QpKmjkpstYw?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                
+                <p>   
+                    <b style="font-size: 18px;">Style: Ottoman</b>        
+                </p>  
+                <p style="font-size: 14px;">The majestic villa built in the Ottoman style belongs to the Karame family who were and remain heavily involved in Tripolean politics. 
+                    The villa is similar to Ottoman style villas found in the Hamra district of Beirut with its red colour and ornate marble window frames. The building today overlooks the southern outskirts of the city and the Sahet al-Nour roundabout which was the scene of many protests during the attempted revolution.                                                                                                                                                                                                    
+                    </p>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        </section>
+
+    <div id="features">
+
+        <section id="Ottoman"> 
+
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal26" style="font-size: 14px;">
+            Ottoman buildings centre
+        </button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal26">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">Ottoman buildings centre; c. 18th century</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+        
+                        <iframe width="1100px" height="500px" 
+                        src="https://www.youtube.com/embed/dSudx9XtmYo?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                
+                <p>   
+                    <b style="font-size: 18px;">Style: Ottoman</b>        
+                </p>  
+                <p style="font-size: 14px;">Two iconic buildings that sit facing Al Manchieh park in the centre of the city. The larger building is named Ezzedine and the adjacent building is named Sultan. It is stipulated that the Ezzedine building once housed an Ottoman bank. 
+                    The decorative windows and balconies are typical of Ottoman architecture and make for an impressive sight in the centre of the city. The upper story of both buildings was not part of the original structures and was added at a later time. 
+                    Both buildings are in semi-dilapidated states today. The ground floor hosts shops and a pharmacy whilst the upper floors are either uninhabited or are only partially occupied.                                                                                                                                                         
+                    </p>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </section>
+        
+    <div id="features">
+
+        <section id="Karame"> 
+
+        <h5 style="padding-left:12px"><b>Miscellaneous</b></h5> 
+
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal27" style="font-size: 14px;">
+            Al Hallab sweets
+        </button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal27">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">Karame Palace; c. 19th century (building renovated)</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+        
+                        <iframe width="1100px" height="500px" 
+                        src="https://www.youtube.com/embed/USODLvv9hOQ?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                
+                <p>   
+                    <b style="font-size: 18px;">Style: Ottoman</b>        
+                </p>  
+                <p style="font-size: 14px;">The building is most famous for housing Tripoli’s most famous sweet shop, Al Hallab sweets. Tripoli’s fame as a centre of sweet making in Lebanon and the Middle East can be attributed to its once abundant sugar cane crop. Tripoli and its sweet businesses have adapted many traditional sweets in the region to create many unique recipes only found in the city such as Tripolean Kunefe and Jazerieh (a candied sweet made with pumpkin).                                                                                                                                                                                                   
+                    </p>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </section>
+
+        
+    <div id="features">
+
+        <section id="Jewish"> 
+ 
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#myModal28" style="font-size: 14px;">
+            Jewish Quarter
+        </button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal28">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">Jewish Quarter</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+        
+                        <iframe width="1100px" height="500px" 
+                        src="https://www.youtube.com/embed/EvprIUI0Z_U?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                 
+                <p style="font-size: 14px;">Like many cities in the Arab world, Tripoli once had a small but important Jewish community which gradually ceased to exist after the creation of Israel. The Jewish area was part of the traditionally Christian Zehrieh area. The street’s history is not marked and locals do not readily divulge information about its history.</p>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </section>
+
+    <div id="buttons">
+
+        <section id="B1">
+        <button type="button" class="btn btn-outline-dark2" data-bs-toggle="modal" data-bs-target="#myModal29"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal29">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title">Raymond St.Gilles Citadel; c.1103-04</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+            
+        <!-- Modal body -->
+        <div class="modal-body">
+        <iframe width="1100px" height="500px" 
+            src="https://www.youtube.com/embed/s6vdUvakGtY?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+                    
+        <p> <b style="font-size: 16px;">Style: Crusader, Mamluk, Ottoman</b> </p> 
+        <p style="font-size: 14px;"> Originally built during the early 12th century, the original structure was built as a Crusader fortress against incoming attacks from both the land and sea. Burned down in 1297, it was partially rebuilt by and was again renovated by Ottoman governor Mustafa Agha Barbar.
+            Little of the original Crusader structure remains although the graves of some Crusader knights are still present. The castle is used today as a Lebanese army barracks as well as housing a small archeology museum. 
+        </p> 
+    </div>
+    </div>
+    </div>
+    </div>
+        </section>
+
+    <div id="buttons">
+
+        <section id="B2">
+        <button type="button" class="btn btn-outline-dark3" data-bs-toggle="modal" data-bs-target="#myModal30"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal30">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+    
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title">Al Amir Taynal Mosque; c. AD 1336 built by Tripolean Governor, Amir Taynal</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/e_z9jTOnCbY?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        
+        <p>
+            <b style="font-size: 16px;">Style: Mamluk</b>    
+        </p> 
+        <p style="font-size: 14px;">
+            Once standing amongst the citrus orchards of Tripoli, the mosque is today surrounded by a labyrinth of late 20th century apartment blocks. When visiting the city, Arab explorer Ibn Battutah describes the exuberant character of the mosque’s benefactor which can perhaps explain the mosque’s flamboyant style in comparison to the more austere Mamluk architecture visible in other parts of the city. Interestingly, the shape of the mosque and some of its architectural features suggest the original site housed a Church or a Greek temple. Considered one of Tripoli’s most architecturally and historically significant mosques, Taynal mosque is today distinguishable by its sweet wrapper like green and white stripped domes.
+        </p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B3">
+        <button type="button" class="btn btn-outline-dark4" data-bs-toggle="modal" data-bs-target="#myModal31"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal31">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+    
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title">Al Burtasi Mosque; c. 1381</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/99Ggpn6b0mU?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        
+        <p>   
+            <b style="font-size: 16px;">Style: Mamluk</b>  
+        </p>
+        <p style="font-size: 14px;">
+            Considered one of Tripoli’s finest examples of Mamluk architecture, the elegant structure with its signature black and white mamluk marble striping on the exterior is located just outside the souk area and next to the Abu Ali River. 
+            Before the great flood of 1955, there was a bridge near traversing the river which no longer exists. The mosque today sits near to the large flee market which extends from the main souk area next to the river towards the sea area. 
+        </p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B4">
+        <button type="button" class="btn btn-outline-dark5" data-bs-toggle="modal" data-bs-target="#myModal32"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal32">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+    
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title">Al Shokr Mosque, Mina; c. 2008</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/D6FlCmIZcug?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        
+        <p>   
+            <b style="font-size: 16px;">Style: Islamic</b>  
+        </p> 
+        <p style="font-size: 14px;">
+            Built as a smaller replicate of the Mohammad Al-Amin Mosque in Beirut’s downtown, the mosque occupies a position leading into the port area from the south. Like its larger Beiruti counterpart, the mosque closely resembles the Sultan Ahmet mosque in Istanbul and is testament to the power of the Sunni fiefdoms and their influence in Tripoli.
+        </p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B5">
+        <button type="button" class="btn btn-outline-dark6" data-bs-toggle="modal" data-bs-target="#myModal33"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal33">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+    
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title">Fatima al Zahraa Mosque; c. 1970's</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/lYGxVCj1d5o?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        
+        <p>   
+            <b style="font-size: 16px;">Style: Islamic Alawite</b>  
+        </p> 
+        <p style="font-size: 14px;">
+            A relatively non-descript structure other than the fact it bears the tell-tale green dome of an Alawite mosque. 
+            Tripoli is home to a relatively large Alawite population who live in the Jebel Mohsen area of Tripoli. Alawites are found throughout the Syrian coastal region and communities of this secretive sect of Shia Islam are also found in Northern Lebanon.
+        </p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B6">
+        <button type="button" class="btn btn-outline-dark7" data-bs-toggle="modal" data-bs-target="#myModal34"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal34">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+    
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title">Hammam Al Abed; c. late 17th Century</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/ye6ptZ34LKA?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        
+        <p>   
+            <b style="font-size: 16px;">Style: Mamluk</b>  
+        </p> 
+        <p style="font-size: 14px;">
+            Barely distinguishable from the outside, Hammam Al Abed is the only working Bathhouse remaining in Tripoli today. Hammam’s were always located next to mosques and are based on the Syrian Arab plan. Upon entering the building there is a large entrance area with three large Iwans (halls) which include a high raised dome in the centre. 
+            The bath house is still frequented by both Tripoleans and tourists today. 
+                </p>
+            </div>
+        </div>
+        </div>
+        </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B7">
+        <button type="button" class="btn btn-outline-dark8" data-bs-toggle="modal" data-bs-target="#myModal35"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal35">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+   
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title">Khan al Khayyatin; c. 1341</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body"> 
+             <iframe width="1100px" height="500px" 
+                src="href?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        
+        <p>   
+            <b style="font-size: 16px;">Style: Mamluk</b>  
+        </p> 
+        <p style="font-size: 14px;">
+            Literally khan of the Tailors, the khan forms an integral part of the original 14th century souq which was originally a Crusader hospital. The white-washed souq features identically sized shops selling lace and fabrics today. The khan was renovated in the 21st century with the help of a German organisation. </p>
+            <p>(Source: Archnet)</p>
+        </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B8">
+        <button type="button" class="btn btn-outline-dark9" data-bs-toggle="modal" data-bs-target="#myModal36"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal36">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+   
+       <!-- Modal Header -->
+       <div class="modal-header">
+        <h4 class="modal-title">Khan al Misriyyin - Soap Museum; c. 1309-56</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+        <iframe width="1100px" height="500px" 
+        src="https://www.youtube.com/embed/DIRkUZLbM9g?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+        
+        <p>   
+            <b style="font-size: 16px;">Style: Islamic</b>  
+        </p> 
+        <p style="font-size: 14px;">
+            Known as Khan al-Misriyyin, ‘Khan of the Egyptians” the medieval khan served as a trading place between Tripolean and Egyptian Cairene merchants and affirmed the economic and social ties between the two cities. The khan today houses a soap museum and is an integral part of Tripoli’s tourist offerings. 
+                </p>
+            </div>
+        </div>
+        </div>
+        </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B9">
+        <button type="button" class="btn btn-outline-dark10" data-bs-toggle="modal" data-bs-target="#myModal37"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal37">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+   
+       <!-- Modal Header -->
+       <div class="modal-header">
+        <h4 class="modal-title">Madrassa al-Qartawiyya; c. 1316-1326</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+        <iframe width="1100px" height="500px" 
+        src="https://www.youtube.com/embed/FtkigjFA0Ug?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+        
+        <p>   
+            <b style="font-size: 16px;">Style: Mamluk</b>  
+        </p>
+        <p style="font-size: 14px;">The largest of a set of six madrassas built around the great mosque under Tripolean governor, Prince Shihab Al Din Qaratay in the 14th century. The madrassa is arguably one of the finest examples of Mamluk architecture in the city with its elegant black and white marble masonry and portico. 
+            The building’s features take influence from many different civilizations including its Norman style arch and Byzantine style monuments.
+            The madrassa is today still in use and sits connected to the east wall of the great mosque.
+        </p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    
+    <div id="buttons">
+
+        <section id="B10">
+        <button type="button" class="btn btn-outline-dark11" data-bs-toggle="modal" data-bs-target="#myModal38"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal38">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+   
+       <!-- Modal Header -->
+       <div class="modal-header">
+        <h4 class="modal-title">Madrassa al Nasiriyya; c. 1354-60</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+        <iframe width="1100px" height="500px" 
+        src="https://www.youtube.com/embed/N1hONwmwDrA?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+        
+        <p>   
+            <b style="font-size: 16px;">Style: Mamluk</b>  
+        </p> 
+        <p style="font-size: 14px;">
+            Located next to the great mosque, the only record of who built the madrassa is a medallion above its door attesting the building to Sultan Hasan ibn Muhammad, son of Qala'un. 
+            The facade is built in alternate courses of black and white stone and is completely enclosed by a framing band of zigzag, a motif that would later be copied for, and is accentuated by, the Mashhad across the street. 
+            </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    
+    <div id="buttons">
+
+        <section id="B11">
+        <button type="button" class="btn btn-outline-dark12" data-bs-toggle="modal" data-bs-target="#myModal39"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal39">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+   
+       <!-- Modal Header -->
+       <div class="modal-header">
+        <h4 class="modal-title"> Madrassa Khatuniyyah; c. AD 1373-74</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/xY_3Xu5ZHgU?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        
+        <p>   
+            <b style="font-size: 16px;">Style: Mamluk Islamic</b>  
+        </p> 
+        <p style="font-size: 14px;">The Madrassa Khatuniyyah stands across from the Madrassah Saqraqiyyah today and is distinguishable by its white dome as opposed to the blue dome of the structure opposite. Built as a funerary madrassah for Arghun Khatun, the freed slave wife of Amir ‘Izz al-Din Aydamir al-Ashrafi. It was noted in the 20th century that a very pious man guarded the structure and did not allow visitors to enter the building although this is no longer the case. </p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B12">
+        <button type="button" class="btn btn-outline-dark13" data-bs-toggle="modal" data-bs-target="#myModal40"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal40">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+   
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">Madrassa Saqraqiyyah; c. AD 1359, Sayf al Din Aqturaq</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+    
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/1IjPNTcf9m8?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        
+        <p>   
+            <b style="font-size: 16px;">Style: Mamluk Islamic</b>  
+        </p> 
+        <p style="font-size: 14px;">
+            The madrassa and mosque today stand a short walk from the Evangelical church near the entrance to the old souk (market) area. The domed chambers remain the most important and most distinguishable part of the building today. Unusually for the mosque, there is no minaret although it is stipulated that a tower could have been pulled down many centuries previously. The description above the door attests to the building being intended as a funerary mosque. Two granite columns from ancient remains once stood on each side of the entrance.
+            </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B13">
+        <button type="button" class="btn btn-outline-dark14" data-bs-toggle="modal" data-bs-target="#myModal41"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal41">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+   
+       <!-- Modal Header -->
+       <div class="modal-header">
+        <h4 class="modal-title">Mansouri Great Mosque Tripoli; c. 1294</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/JiSnrDyREdE?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        
+        <p>   
+            <b style="font-size: 16px;">Style: Mamluk</b>  
+        </p> 
+        <p style="font-size: 14px;">The mosque was built by the sons of the Mamluk sultan who conquered Tripoli from the Crusaders in 1289, Al-Mansur Qalawun. 
+            The mosque is characterised by a large minaret structure and a central courtyard. Interestingly the qibla (direction of prayer), faces towards the city of Petra in modern day Jordan and not Mecca as in the majority of mosques.
+            Some debate exists as to whether some elements of the mosque belong to an earlier structure, possibly a Church.
+            </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B14">
+        <button type="button" class="btn btn-outline-dark15" data-bs-toggle="modal" data-bs-target="#myModal42"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal42">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+   
+       <!-- Modal Header -->
+       <div class="modal-header">
+        <h4 class="modal-title">Takiyyah al-Mawlawiyya; c. 1619</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/t0v3OchmXBo?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        
+        <p>   
+            <b style="font-size: 16px;">Style: Ottoman, Islamic Sufi</b>  
+        </p> 
+        <p style="font-size: 14px;">
+            Built in the 17th century by an Ottoman governor, the takkiya is the largest of the seven takkiya built outside of Turkey. The importance of the building in sufi Islam is affirmed by descriptions of Islamic traveller and historian, Al-Nabulsi as well as European travellers who visited the building in the 18th and 19th centuries. 
+            The main structure of the building includes an iwan (a rectangular hall), courtyards and a mosque.
+            After extensive damage to the building during the civil war which ended in 1991, the building has recently been renovated by Turkish organisation, TIKA which included extensive landscaping of the riverside. 
+            </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B15">
+        <button type="button" class="btn btn-outline-dark16" data-bs-toggle="modal" data-bs-target="#myModal43"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal43">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+   
+       <!-- Modal Header -->
+       <div class="modal-header">
+        <h4 class="modal-title">Saydet al Najat Church, Mina; c. 18th century</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/xYKmKAkHZNg?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        
+        <p>   
+            <b style="font-size: 16px;">Style: Maronite Christian</b>       
+        </p>
+        <p> <br /> </p>
+        <p style="font-size: 14px;">The Church sits in the middle of the traditionally Christian Mina area. The building is typical of a Maronite Lebanese Church with its simple structure and red roof which marks a change from the traditionally Greek Orthodox churches of the area.
+            There is also a Franciscan Catholic monastery built in the 18th century currently lived in by two monks not far from the Church. </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B16">
+        <button type="button" class="btn btn-outline-dark17" data-bs-toggle="modal" data-bs-target="#myModal44"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal44">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+   
+       <!-- Modal Header -->
+       <div class="modal-header">
+        <h4 class="modal-title">St. George’s Orthodox Church Mina; c.18th century</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/KlQka5VqHCA?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        
+        <p>   
+            <b style="font-size: 16px;">Style: Orthodox Christian</b>       
+        </p> 
+        <p style="font-size: 14px;">The Church is testament to the Mina’s rich Greek Orthodox history. The church is typical of many Orthodox churches in the Middle East where it has a simple exterior and more ornate interior with vaulted ceilings. Whereas inland areas of the city have seen their Christian population dwindle, there remains a vibrant community in the port area which supports various churches, schools and cultural centres.
+            The church has recently been repainted in the style of Greek churches with a blue dome and whitewashed walls. 
+            </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B17">
+        <button type="button" class="btn btn-outline-dark18" data-bs-toggle="modal" data-bs-target="#myModal45"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal45">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+   
+       <!-- Modal Header -->
+       <div class="modal-header">
+        <h4 class="modal-title">St. Joseph Syriac Catholic Church; c. 1809 (renovated 1938)</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/KJhWx2Vc_5s?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        
+        <p>   
+            <b style="font-size: 16px;">Style: Christian Oriental</b>       
+        </p> 
+        <p style="font-size: 14px;">The Church is located opposite the much larger Greek Orthodox Cathedral. Entrance is by a staircase leading off from the main street. 
+            The building is architecturally noted for the three coves on either side of the stone building.                                             
+            </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+
+    <div id="buttons">
+
+        <section id="B18">
+        <button type="button" class="btn btn-outline-dark19" data-bs-toggle="modal" data-bs-target="#myModal46"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal46">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+   
+       <!-- Modal Header -->
+       <div class="modal-header">
+        <h4 class="modal-title">St. Nicholas Orthodox Church, Zehrieh</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="href?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        
+        <p>   
+            <b style="font-size: 16px;">Style: Greek Orthodox</b>       
+        </p> 
+        <p style="font-size: 14px;">The Cathedral is the largest located in Tripoli’s traditionally Christian Zehrieh neighbourhood. 
+            The Cathedral is typical of Orthodox designs with a simple whitewashed facade housing an ornate interior which includes frescoes with Arabic and Greek inscriptions. 
+            Every Holy Thursday, Christians from Tripoli and the surrounding areas traditionally visit 7 churches to commemorate Christ’s Last Supper.                                                                                             
+            </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B19">
+        <button type="button" class="btn btn-outline-dark20" data-bs-toggle="modal" data-bs-target="#myModal47"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal47">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+   
+       <!-- Modal Header -->
+       <div class="modal-header">
+        <h4 class="modal-title">Empire Cinema; c. 1930’s, built by Mr. Chahine</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/iPAs65tipFQ?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        
+        <p>   
+            <b style="font-size: 16px;">Style: Art Deco</b>       
+        </p> 
+        <p style="font-size: 14px;">In its heyday, the cinema played the latest Lebanese and Egyptian films and was the centre of Tripoli’s cultural scene. Cinema played an important role in Tripoli’s cultural scene in the 20th century. Cinemas generally screened either western films or Arab film. A research project led by the Tripoli based Umam initiative has tracked down over 40 cinemas once located in the city and chronicled their history.
+            The cinema is not currently in use and sits on a central square a short walk from the central Al Manchieh park and clock tower. There are plans to restore the theatre by actor and director, Kassem Istambouli whose aim is to create a cultural centre in the current building. 
+            </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B20">
+        <button type="button" class="btn btn-outline-dark21" data-bs-toggle="modal" data-bs-target="#myModal48"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal48">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+   
+       <!-- Modal Header -->
+       <div class="modal-header">
+        <h4 class="modal-title">Levantine Institute; c. 1930’s</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/H6tBNCN00bU?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        
+        <p>   
+            <b style="font-size: 16px;">Style: Art deco</b>       
+        </p>
+        <p> <br /> </p>
+        <p style="font-size: 14px;">The building’s ornate and elegant facade just off the central square are symbolic of the city’s prosperity during the early 20th century which saw the construction of the grand avenues leading to the port area. These new tree lined avenues followed a planned grid system quite unlike the labyrinth of alley ways that make up the old city. Many of the villas and apartment buildings housed the city’s professional classes who chose to move from the older city in the early 20th century and marked a significant change in Tripoli’s urban history. 
+            The building now housing the Levantine Institute of Arabic. As well as teaching Classical Arabic, the institute is known for teaching the arguably more useful Lebanese dialect of Arabic. The Institute is also increasingly popular in the 21st century as learning Arabic is increasingly difficult in the capital, Beirut where English and French often predominate. 
+            </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B21">
+        <button type="button" class="btn btn-outline-dark22" data-bs-toggle="modal" data-bs-target="#myModal49"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal49">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+   
+       <!-- Modal Header -->
+       <div class="modal-header">
+        <h4 class="modal-title">National Evangelical School; c. 1928</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/1IjPNTcf9m8?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        
+        <p>   
+            <b style="font-size: 16px;">Style: 20th century</b>       
+        </p> 
+        <p style="font-size: 14px;">Founded as an American Presbyterian college in 1873 during the Ottoman Empire at around the same time as the American University in Beirut (originally the Syrian Protestant College). The language of instruction of the school has always been in English unlike the many Francophone, Catholic institutions in Lebanon. 
+            The building in the centre of Tripoli today houses the school’s administrative buildings and operates a separate campus outside of Tripoli.                                                        
+            </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B22">
+        <button type="button" class="btn btn-outline-dark123" data-bs-toggle="modal" data-bs-target="#myModal49"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal49">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+   
+       <!-- Modal Header -->
+       <div class="modal-header">
+        <h4 class="modal-title">National Evangelical School; c. 1928</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/1IjPNTcf9m8?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        
+        <p>   
+            <b style="font-size: 16px;">Style: 20th century</b>       
+        </p> 
+        <p style="font-size: 14px;">Founded as an American Presbyterian college in 1873 during the Ottoman Empire at around the same time as the American University in Beirut (originally the Syrian Protestant College). The language of instruction of the school has always been in English unlike the many Francophone, Catholic institutions in Lebanon. 
+            The building in the centre of Tripoli today houses the school’s administrative buildings and operates a separate campus outside of Tripoli.                                                        
+            </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B23">
+        <button type="button" class="btn btn-outline-dark24" data-bs-toggle="modal" data-bs-target="#myModal50"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal50">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+   
+       <!-- Modal Header -->
+       <div class="modal-header">
+        <h4 class="modal-title">Train Station; c. 1920’s</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/M0m4X847UQw?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+         
+        <p style="font-size: 14px;">The train station and depot were built by the French and once connected Tripoli to Aleppo and Turkey in the north and Beirut and Palestine in the South. The train station became defunct in 1975 with the outbreak of the civil war. Several government and non governmental projects have proposed the re-establishment of the railway in Lebanon which would help alleviate Lebanon’s chronic traffic problem. However, buildings encroaching on to the coastal area where the train track once occupied and the current economic crisis have made this idea increasingly unfeasible. 
+            The station today sits abandoned amidst half industrial, half marsh land near to the sea. Plans were recently proposed to develop the train station into a tourist centre. 
+            </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B24">
+        <button type="button" class="btn btn-outline-dark25" data-bs-toggle="modal" data-bs-target="#myModal51"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal51">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title">World Fair, Tripoli; c. 1957-61</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/5bjAJzwGsvE?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        <p>  
+            <b style="font-size: 18px;">Style: Modernism</b>        
+            <b style="font-size: 18px;">Architect: Oscar Niemeyer</b>        
+        </p> 
+        <p style="font-size: 14px;">Built on a 10,000 hectare site on what was once citrus orchards, the fair was commissioned by then Lebanese premier, Fouad Chaheb as an effort to showcase a new, 20th century Lebanon. 
+            The fair ground never opened due to official corruption and the outbreak of the civil war. The fair is a mix of modernist concrete structures similar to Niemeyer’s newly completed Brasilia as well as incorporating Arab geometric designs into the structures. Structures include an unfinished space museum, a theatre and a helipad.  
+            Most of the concrete structures remain intact today in various states of disrepair. Several projects have been proposed to renovate the world fair. As of writing, the fair is open to all and the grounds are frequented by joggers and tourists alike.                                                                
+            </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B25">
+        <button type="button" class="btn btn-outline-dark26" data-bs-toggle="modal" data-bs-target="#myModal52"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal52">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content"> 
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">French Colonial Buildings; c. late 19th century</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+    
+                    <iframe width="1100px" height="500px" 
+                    src="https://www.youtube.com/embed/UwlLFgWtPHM?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                    </iframe>
+            
+            <p>   
+                <b style="font-size: 18px;">Style: French/Ottoman</b>        
+            </p>  
+            <p style="font-size: 14px;">A lack of official records on these buildings makes dating difficult but from the style it can be assumed they date from the late 19th century. Similar styles of buildings can be found in cities throughout the Eastern Mediterranean and combine both French classical styles with Ottoman features such as a stained-glass windows and elaborate window carvings.
+                Many of the buildings today belong to families that have owned the buildings for many generations despite their shuttered windows and unlived in feel. Because of the size of some of the apartments, many Tripoleans cannot afford to rent the buildings.                                                                                                              
+                </p>
+            </div>
+        </div>
+        </div>
+        </div>
+        </section>
+
+    <div id="buttons">
+
+        <section id="B26">
+        <button type="button" class="btn btn-outline-dark27" data-bs-toggle="modal" data-bs-target="#myModal53"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal53">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content"> 
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title">Karame Palace; c. Late 19th century</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/QpKmjkpstYw?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        
+        <p>   
+            <b style="font-size: 18px;">Style: Ottoman</b>        
+        </p>  
+        <p style="font-size: 14px;">The majestic villa built in the Ottoman style belongs to the Karame family who were and remain heavily involved in Tripolean politics. 
+            The villa is similar to Ottoman style villas found in the Hamra district of Beirut with its red colour and ornate marble window frames. The building today overlooks the southern outskirts of the city and the Sahet al-Nour roundabout which was the scene of many protests during the attempted revolution.                                                                                                                                                                                                    
+            </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    
+    <div id="buttons">
+
+        <section id="B27">
+        <button type="button" class="btn btn-outline-dark28" data-bs-toggle="modal" data-bs-target="#myModal54"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal54">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content"> 
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title">Ottoman buildings centre; c. 18th century</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/dSudx9XtmYo?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+        
+        <p>   
+            <b style="font-size: 18px;">Style: Ottoman</b>        
+        </p>  
+        <p style="font-size: 14px;">Two iconic buildings that sit facing Al Manchieh park in the centre of the city. The larger building is named Ezzedine and the adjacent building is named Sultan. It is stipulated that the Ezzedine building once housed an Ottoman bank. 
+            The decorative windows and balconies are typical of Ottoman architecture and make for an impressive sight in the centre of the city. The upper story of both buildings was not part of the original structures and was added at a later time. 
+            Both buildings are in semi-dilapidated states today. The ground floor hosts shops and a pharmacy whilst the upper floors are either uninhabited or are only partially occupied.                                                                                                                                                         
+            </p>
+        </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+    <div id="buttons">
+
+        <section id="B28">
+        <button type="button" class="btn btn-outline-dark29" data-bs-toggle="modal" data-bs-target="#myModal55"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal55">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content"> 
+
+         <!-- Modal Header -->
+         <div class="modal-header">
+            <h4 class="modal-title">Khan al Khayyatin; c. 1341</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+    
+                    <iframe width="1100px" height="500px" 
+                    src="https://www.youtube.com/embed/phyF0a8tHKk?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                    </iframe>
+            
+            <p>   
+                <b style="font-size: 16px;">Style: Mamluk</b>  
+            </p> 
+            <p style="font-size: 14px;">
+            Literally khan of the Tailors, the khan forms an integral part of the original 14th century souq which was originally a Crusader hospital. The white-washed souq features identically sized shops selling lace and fabrics today. The khan was renovated in the 21st century with the help of a German organisation. </p>
+            <p>(Source: Archnet)</p>
+        </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    
+    <div id="buttons">
+
+        <section id="B29">
+        <button type="button" class="btn btn-outline-dark30" data-bs-toggle="modal" data-bs-target="#myModal56"></button>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal56">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content"> 
+    
+        <!-- Modal Header -->
+        <div class="modal-header">
+        <h4 class="modal-title">Jewish Quarter</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+
+                <iframe width="1100px" height="500px" 
+                src="https://www.youtube.com/embed/EvprIUI0Z_U?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+            
+        <p style="font-size: 14px;">Like many cities in the Arab world, Tripoli once had a small but important Jewish community which gradually ceased to exist after the creation of Israel. The Jewish area was part of the traditionally Christian Zehrieh area. The street’s history is not marked and locals do not readily divulge information about its history.</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    
+    <script>
+        
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZWxpa2Etc2luaGEiLCJhIjoiY2t5a2x0ZmU2MjJ2MzJucXBqa3ludmFnciJ9.kHtDaktoXqMCHmEnLHAJCw';
+
+
+        /* const geojson = {
+            'type': 'FeatureCollection',
+            'features': [
+            {
+            'type': 'Feature',
+            'geometry': {
+            'type': 'Point',
+            'coordinates': [35.8362, 34.4346]
+            },
+            'properties': {
+            'title': 'Tripoli, Lebanon',
+            'description': 'Write a description here'
+            }
+            },
+            ]
+            }; */
+
+        const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/elika-sinha/ckze7r4lm002314s0jjty1gs5',
+        center: [35.8377, 34.443],
+        zoom: 13.5,
+        dragPan: false,
+        });
+
+        // disable map scroll
+        map.scrollZoom.disable();
+
+        // map.addControl(new mapboxgl.NavigationControl());
+
+        // map.flyTo({
+        //              center:[35.8362, 34.4346],
+        //              zoom: 13,
+        //              speed: 0.5,
+        //              pitch: 0,
+        //          }); 
+
+        // map.on('load', () => { 
+ 
+        // Add the GeoJSON with pointers from the places
+
+        // map.addSource('points', {
+        // 'type': 'geojson',
+        // 'data': {
+        // 'type': 'FeatureCollection', 
+        // 'features': [
+        // { 
+        // 'type': 'Feature',
+        //'properties': {},
+        //'geometry': {
+        //'type': 'Point',
+        //'coordinates': [35.84425797039146, 34.433604918879574]
+        //} // Raymond St.Gilles Citadel
+        //},
+
+        //{
+        //'type': 'Feature',
+        //'properties': {},
+        //'geometry': {
+        //'type': 'Point',
+        //'coordinates': [35.8377, 34.4310]
+        //} // Al Amir Taynal Mosque
+        //},
+
+        //{
+        //'type': 'Feature',
+        //'properties': {},
+        //'geometry': {
+        //'type': 'Point',
+        //'coordinates': [35.8463, 34.4356]
+        //} // Al Burtasi Mosque
+        //},
+
+        //{
+        //'type': 'Feature',
+        //'properties': {},
+        //'geometry': {
+        //'type': 'Point',
+        //'coordinates': [35.8167, 34.4280]
+        //} // Al Shokr Mosque, Mina
+        //},
+
+        //{
+        //'type': 'Feature',
+        //'properties': {},
+        //'geometry': {
+        //'type': 'Point',
+        //'coordinates': [35.85799180068542, 34.44490086769311]
+        //} // Fatima al Zahraa Mosque
+        //},
+
+        //{
+        //'type': 'Feature',
+        //'properties': {},
+        //'geometry': {
+        //'type': 'Point',
+        //'coordinates': [35.843382512037685, 34.43582557707844]
+        //} // Hammam
+        //},
+
+        //{
+        //'type': 'Feature',
+        //'properties': {},
+        //'geometry': {
+        //'type': 'Point',
+        //'coordinates': [35.84556, 34.436]
+        //} // Khan al Khayyatin
+        //},
+
+        //{
+        //'type': 'Feature',
+        //'properties': {},
+        //'geometry': {
+        //'type': 'Point',
+        //'coordinates': [35.84241355724108, 34.43486396623734]
+        //} // Khan al Misriyyin - Soap Museum
+        //},
+
+        //{
+        //'type': 'Feature',
+        //'properties': {},
+        // 'geometry': {
+        // 'type': 'Point',
+        // 'coordinates': [35.84241355724108, 34.43486396623734]
+        // } // Madrassa al Nasiriyya
+        // },
+
+        // {
+        // 'type': 'Feature',
+        // 'properties': {},
+        // 'geometry': {
+        // 'type': 'Point',
+       //  'coordinates': [35.84241355724108, 34.43486396623734]
+        // } // Madrassa Khatuniyyah
+        // },
+
+        // {
+        // 'type': 'Feature',
+        // 'properties': {},
+        // 'geometry': {
+        // 'type': 'Point',
+        // 'coordinates': [35.842500, 34.434520]
+        // } // Mansouri Great Mosque Tripoli
+        // },
+
+        // {
+        // 'type': 'Feature',
+        // 'properties': {},
+        // 'geometry': {
+        // 'type': 'Point',
+        // 'coordinates': [35.84575591295421, 34.430810445291264]
+        // } // Takiyyah al-Mawlawiyya
+        // },
+
+        // {
+        // 'type': 'Feature',
+        // 'properties': {},
+        // 'geometry': {
+        // 'type': 'Point',
+        // 'coordinates': [35.81056213767527, 34.45187880876522]
+        // } // Saydet al Najat Church, Mina
+        // },
+
+        // {
+        // 'type': 'Feature',
+        // 'properties': {},
+        // 'geometry': {
+        // 'type': 'Point',
+        // 'coordinates': [35.81056213767527, 34.45187880876522]
+       //  } // St. George’s Orthodox Church Mina
+        // },
+
+        // {
+        // 'type': 'Feature',
+        // 'properties': {},
+        // 'geometry': {
+        // 'type': 'Point',
+       //  'coordinates': [35.844158444181765, 34.43759085744796]
+        // } // St. Joseph Syriac Catholic Church
+        // },
+
+        // {
+        // 'type': 'Feature',
+        // 'properties': {},
+        // 'geometry': {
+        // 'type': 'Point',
+        // 'coordinates': [35.844158444181765, 34.43759085744796]
+        // } // St. Nicholas Orthodox Church, Zehrieh
+        // },
+
+       //  {
+       //  'type': 'Feature',
+        // 'properties': {},
+        // 'geometry': {
+        // 'type': 'Point',
+        // 'coordinates': [35.83846383175569, 34.436320709085734]
+        // } // Empire cinema
+       //  },
+
+        // {
+        // 'type': 'Feature',
+        // 'properties': {},
+        // 'geometry': {
+        // 'type': 'Point',
+        // 'coordinates': [35.837186617759144, 34.43950595814902]
+        // } // Levantine Institute
+        // },
+
+        // {
+        // 'type': 'Feature',
+        // 'properties': {},
+        // 'geometry': {
+        // 'type': 'Point',
+        // 'coordinates': [35.844053806855214, 34.44047756480903]
+        // } // National Evangelical School
+        // },
+
+        // {
+        // 'type': 'Feature',
+        // 'properties': {},
+        // 'geometry': {
+        // 'type': 'Point',
+        // 'coordinates': [35.825312415356194, 34.44903061602696]
+        // } // Train station
+        // },
+
+        // {
+        // 'type': 'Feature',
+        // 'properties': {},
+        // 'geometry': {
+        // 'type': 'Point',
+        // 'coordinates': [35.825880610979645, 34.439701498472445]
+       //  } // World Fair, Tripoli 
+        // },
+
+        // {
+        // 'type': 'Feature',
+        // 'properties': {},
+       //  'geometry': {
+        // 'type': 'Point',
+        // 'coordinates': [35.825880610979645, 34.439701498472445]
+       //  } // World Fair, Tripoli 
+        // },
+        
+       //  {
+        // 'type': 'Feature',
+        // 'properties': {},
+        // 'geometry': {
+        // 'type': 'Point',
+        // 'coordinates': [35.83816170244907, 34.43502847921161]
+       //  } // French colonial buildings
+       //  },
+
+        // {
+       //  'type': 'Feature',
+        // 'properties': {},
+        // 'geometry': {
+        // 'type': 'Point',
+        // 'coordinates': [35.83913218282251, 34.43725138531154]
+       //  } // Ottoman buildings centre
+       //  },
+
+        // {
+        // 'type': 'Feature',
+        // 'properties': {},
+        // 'geometry': {
+        // 'type': 'Point',
+        // 'coordinates': [35.83770253068667, 34.435793893285606]
+        // } // Karame Palace
+       //  },
+
+        // {
+        // 'type': 'Feature',
+        // 'properties': {},
+        // 'geometry': {
+        // 'type': 'Point',
+        // 'coordinates': [35.84384644040591, 34.437471774265326]
+       //  } // Al Hallab sweets
+        // },
+
+        // {
+        // 'type': 'Feature',
+        // 'properties': {},
+        // 'geometry': {
+        // 'type': 'Point',
+        // 'coordinates': [35.833872311021324, 34.437743482021204]
+        // } // Jewish Quarter
+        // },
+
+        // ]
+        // },
+        
+        // });
+        // Add a circle layer
+        // map.addLayer({
+        // 'id': 'circle',
+        // 'type': 'circle',
+        // 'source': 'points',
+       //  'paint': {
+        // 'circle-color': 'orange',
+        // 'circle-radius': 12,
+        // 'circle-stroke-width': 2,
+        // 'circle-stroke-color': 'white'
+        // }
+       //  }); 
+        
+        // Center the map on the coordinates of any clicked circle from the 'circle' layer.
+        // map.on('click', 'circle', (e) => {
+        // map.flyTo({
+        // center: e.features[0].geometry.coordinates
+        // });
+        // });
+        
+        // Change the cursor to a pointer when the it enters a feature in the 'circle' layer.
+        // map.on('mouseenter', 'circle', () => {
+        // map.getCanvas().style.cursor = 'pointer';
+        // });
+        
+        // Change it back to a pointer when it leaves.
+        // map.on('mouseleave', 'circle', () => {
+        // map.getCanvas().style.cursor = '';
+        // });
+        // });
+ 
+    </script>
+
+    </div> 
+
+    </body>
+</html>
