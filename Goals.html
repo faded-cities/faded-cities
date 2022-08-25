@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='https://fonts.googleapis.com/css?family=Mukta Malar' rel='stylesheet'>
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style> 
+            .carousel {
+            display: flex;
+            gap: .7em;
+            margin-top: 0px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 0px;
+            /* adds scrolling for the element: */
+            overflow-y: scroll;
+            /* removes the horizontal scrollbar: */
+            scrollbar-width: 10px;
+            text-decoration: none;
+            }
+
+            .carousel--item {
+            /* carousel item should have min-width declared: */
+            min-width: 80%;
+            /* carousel item should have defined height: */
+            height: 100px;
+            
+            border-radius: 10px;
+            background-position: center;
+            background-size: cover;
+            opacity: 1;
+            transition: 300ms ease;
+            text-decoration: none;
+            }
+
+            .carousel--item:hover {
+            opacity: 1;
+            transform: scale(1.01);
+            transform-origin: bottom;
+            }
+
+            .one {
+            display: absolute;
+             /* carousel item should have min-width declared: */
+            width: 100%;
+            /* carousel item should have defined height: */
+            height: 200px;
+            margin-top: 50px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 0px;
+            padding: 2.5%;
+            color: orange;
+            text-align: left;
+            font-family:  "Mukta Malar";
+            background: white;
+            text-decoration: none;
+            } 
+
+            .two {
+            /* carousel item should have min-width declared: */
+            width: 100%;
+            /* carousel item should have defined height: */
+            height: 100%;
+            font-size: 100px;
+            color: #282E34;
+            text-align: center;
+            font-family:  "Mukta Malar";
+            background: white;
+            text-decoration: none;
+            }
+
+            body {
+            background-color: white;
+            }
+
+            .wrapper{
+            position: fixed;
+            top: 0;
+            /*left: -100%;*/
+            right: -100%;
+            height: 100%;
+            width: 40%;
+            background: #282E34;
+            color: white; 
+            /*background: linear-gradient(90deg, #f92c78, #4114a1);*/
+            /* background: linear-gradient(375deg, #1cc7d0, #2ede98); */
+            /* background: linear-gradient(-45deg, #e3eefe 0%, #efddfb 100%);*/
+            transition: all 0.5s ease-in-out;
+            opacity: 75%;
+            font-family: "Mukta Malar" !important;
+            z-index: 2;
+            }
+            #active:checked ~ .wrapper{
+            /*left: 0;*/
+            right:0;
+            }
+            .menu-btn{
+            position: fixed;
+            z-index: 3;
+            right: 20px;
+            /*left: 20px; */
+            top: 20px;
+            height: 50px;
+            width: 50px;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            /*color: #fff;*/
+            /*background: linear-gradient(90deg, #f92c78, #4114a1);*/
+            /* background: linear-gradient(375deg, #1cc7d0, #2ede98); */
+            /* background: linear-gradient(-45deg, #e3eefe 0%, #efddfb 100%); */
+            transition: all 0.3s ease-in-out;
+            }
+            .menu-btn span,
+            .menu-btn:before,
+            .menu-btn:after{
+                content: "";
+                position: absolute;
+                top: calc(50% - 1px);
+                left: 30%;
+                width: 40%;
+                border-bottom: 2px solid orange;
+                transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+            }
+            .menu-btn:before{
+            transform: translateY(-8px);
+            }
+            .menu-btn:after{
+            transform: translateY(8px);
+            }
+
+            .close {
+                z-index: 999;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                transition: .6s;
+            }
+
+            /* closing animation */
+            #active:checked + .menu-btn span {
+                transform: scaleX(0);
+            }
+            #active:checked + .menu-btn:before {
+            transform: rotate(45deg);
+            border-color: orange;
+            }
+            #active:checked + .menu-btn:after {
+            transform: rotate(-45deg);
+            border-color: orange;
+            }
+            .wrapper ul{
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            height: 90%;
+            transform: translate(-50%, -50%);
+            list-style: none;
+            text-align: center;
+            }
+            .wrapper ul li{
+            height: 10%;
+            margin: 15px 0;
+            }
+            .wrapper ul li a{
+            text-decoration: none;
+            font-size: 30px;
+            font-weight: 500;
+            padding: 5px 30px;
+            color: #fff;
+            border-radius: 50px;
+            position: absolute;
+            line-height: 50px;
+            margin: 5px 30px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+            }
+            .wrapper ul li a:after{
+            position: absolute;
+            content: "";
+            background: orange; 
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            border-radius: 0px;
+            transform: scaleY(0);
+            z-index: -1;
+            transition: transform 0.3s ease;
+            }
+            .wrapper ul li a:hover:after{
+            transform: scaleY(1);
+            }
+            .wrapper ul li a:hover{
+            color: #282E34;
+            }
+            input[type="checkbox"]{
+            display: none;
+            }
+            .content{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            text-align: center;
+            width: 100%;
+            color: #202020;
+            }
+            .content .title{
+            font-size: 40px;
+            font-weight: 700;
+            }
+            .content p{
+            font-size: 35px;
+            font-weight: 600;
+            }
+
+            #active:checked ~ .wrapper ul li a{
+            opacity: 1;
+            }
+            .wrapper ul li a{
+            transition: opacity 1.2s, transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+            transform: translateX(100px);
+            }
+            #active:checked ~ .wrapper ul li a{
+                transform: none;
+                transition-timing-function: ease, cubic-bezier(.1,1.3,.3,1); /* easeOutBackを緩めた感じ */
+            transition-delay: .6s;
+            transform: translateX(-100px);
+            }
+
+             
+            .caption {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            text-align: center;
+            color: orange;
+            z-index: 900;
+            }
+
+            .caption span.border {
+            opacity: 1.5;
+            background-color: orange;
+            color: #fff;
+            padding: 18px;
+            font-size: 25px;
+            letter-spacing: 10px;
+            z-index: 900;
+            }
+ 
+            .slide {
+            color: white;
+            background-color:orange;
+            text-align:right;
+            padding:50px 100px;
+            text-align: justify;
+            position:relative;
+            z-index: 1;
+            }
+
+            .slide2 {
+            color: white;
+            background-color: orange;
+            text-align:right;
+            padding:50px 200px;
+            text-align: justify;
+            position:relative;
+            z-index: 1;
+            } 
+
+
+            @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css');
+
+            .footer-social-icons {
+                width: 300px;
+                display:block;
+                margin: 0 auto;
+            }
+            .social-icon {
+                color: #fff;
+            }
+            ul.social-icons {
+                margin-top: 10px;
+            }
+            .social-icons li {
+                vertical-align: top;
+                display: inline;
+                height: 100px;
+            }
+            .social-icons a {
+                color: #fff;
+                text-decoration: none;
+            }
+            .fa-facebook {
+                padding:10px 14px;
+                -o-transition:.5s;
+                -ms-transition:.5s;
+                -moz-transition:.5s;
+                -webkit-transition:.5s;
+                transition: .5s; 
+                background-color: orange; 
+                z-index: 1;  
+            }
+            .fa-facebook:hover {
+                background-color: white; 
+                color: orange;
+            }
+            .fa-twitter {
+                padding:10px 14px;
+                -o-transition:.5s;
+                -ms-transition:.5s;
+                -moz-transition:.5s;
+                -webkit-transition:.5s;
+                transition: .5s;
+                background-color: orange; 
+            }
+            .fa-twitter:hover {
+                background-color: white;
+                color: orange;
+            } 
+            .fa-linkedin {
+                padding:10px 14px;
+                -o-transition:.5s;
+                -ms-transition:.5s;
+                -moz-transition:.5s;
+                -webkit-transition:.5s;
+                transition: .5s;
+                background-color: orange;
+            }
+            .fa-linkedin:hover {
+                background-color: white;
+                color: orange;
+            }
+            .fa-instagram {
+                padding:10px 14px;
+                -o-transition:.5s;
+                -ms-transition:.5s;
+                -moz-transition:.5s;
+                -webkit-transition:.5s;
+                transition: .5s;
+                background-color: orange;
+            }
+            .fa-instagram:hover {
+                background-color: white; 
+                color: orange;
+            }
+            
+        </style>
+    </head>
+        
+        <body>
+            <div class="carousel">
+                <div class="carousel--item two">
+                    <h1 style="font-size: 80px;">GOALS</h1>
+                </div>
+            </div>
+
+            <div class="carousel"> 
+                <div class="carousel--item one">
+                    <h1>Tell the story of cities through their architecture</h1>
+                    <p style="font-size: 18px">Faded Cities chooses cities whose rich and varied history have been overshadowed by their contemporary issues to explore and 
+                        showcase. We believe their stories are worth telling. Our explorations involve a mix of technical and interactive media that 
+                        best showcases the city’s history and people.</p>
+                </div>
+            </div>
+            <div class="carousel"> 
+                <div class="carousel--item one">
+                    <h1>Document the city’s architecture and history </h1>
+                    <p style="font-size: 18px">The featured cities often do not have comprehensive or easily accessible documentation. We aim to catalogue 
+                        and document the histories, architectural styles and locations of each city’s most notable buildings. Our work takes the form of 
+                        architectural research, on-site investigation  and collaboration with local architects, historians and creatives.</p>
+                </div>
+            </div>
+            <div class="carousel"> 
+                <div class="carousel--item one">
+                    <h1>Learn from history</h1>
+                    <p style="font-size: 18px">Understanding the multi-faceted history of each city can help us better understand its present and ultimately provide 
+                        insight into its future. We hope our specific insights and research on each city’s urban development and landscape will shed light on the 
+                        contemporary issues it faces and point in the direction of a solution.</p>
+                </div>
+            </div>
+            
+
+            <div class="carousel"> 
+                <div class="carousel--item one">
+                    <h1>Provide a framework for sustainable urban regeneration and preservation</h1>
+                    <p style="font-size: 18px">Faded Cities believes in historical and architectural preservation not only to shed light on the past but also to 
+                        create a framework for more livable and sustainable cities in the present and future. Our architectural and urban research gives us insight 
+                        and allows us to provide suggestions for more sustainable cities that avoid the development errors of the past and present.</p>
+                </div>
+            </div>
+
+            <div class="carousel"> 
+                <div class="carousel--item one" style="padding-bottom: 350px;">
+                    <h1>Create a community of practitioners</h1>
+                    <p style="font-size: 18px">By conducting thorough research into the architecture of cities we build a comprehensive network of architects, 
+                        historians and creatives who are similarly committed to the past, present and future urban landscape of their cities.</p>
+                </div>
+            </div> 
+             
+ 
+
+        <input type="checkbox" id="active">
+        <label for="active" class="menu-btn"><span></span></label>
+        <label for="active" class="close"></label>
+        <div class="wrapper">
+        <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Explore</a></li>
+        <li><a href="#">Goals</a></li>
+        </ul>
+        </div>
+ 
+
+        <div class="slide">
+            <div class="slide"> 
+            <div class="footer-social-icons">
+                <ul class="social-icons">
+                    <li><a href="" class="social-icon"> <i class="fa fa-facebook"></i></a></li>
+                    <li><a href="" class="social-icon"> <i class="fa fa-twitter"></i></a></li> 
+                    <li><a href="" class="social-icon"> <i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="" class="social-icon"> <i class="fa fa-instagram"></i></a></li>
+                </ul>
+            </div> 
+        </div>
+            
+        
+
+        </body>
+</html>
