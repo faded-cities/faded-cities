@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset=utf-8>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='https://fonts.googleapis.com/css?family=Mukta Malar' rel='stylesheet'>
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      
+    <style>
+      body {
+        background-color: white;
+      }
+      p{ 
+        line-height: 2rem; /*or use value in px*/ 
+      }
+      .carousel {
+            display: flex;
+            gap: .0em;
+            margin-top: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            /* adds scrolling for the element: */
+            overflow-y: scroll;
+            /* removes the horizontal scrollbar: */
+            scrollbar-width: 0px;
+            }
+
+            .carousel--item {
+            /* carousel item should have min-width declared: */
+            min-width: 400px;
+            /* carousel item should have defined height: */
+            height: 600px;
+            
+            border-radius: 0px;
+            background-position: center;
+            background-size: cover;
+            opacity: 1;
+            transition: 300ms ease;
+            }
+
+            .carousel--item:hover {
+            opacity: 1;
+            /* transform: scale(1.01);
+            transform-origin: bottom; */
+            }
+
+            .three {
+            display: absolute;
+             /* carousel item should have min-width declared: */
+            width: 100%;
+            /* carousel item should have defined height: */
+            height: 100%;
+            margin-top: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+            padding: 0%;
+            color: #282E34;
+            } 
+
+            .wrapper{
+            position: fixed;
+            top: 0;
+            /*left: -100%;*/
+            right: -100%;
+            height: 100%;
+            width: 40%;
+            background: #282E34;
+            color: white; 
+            /*background: linear-gradient(90deg, #f92c78, #4114a1);*/
+            /* background: linear-gradient(375deg, #1cc7d0, #2ede98); */
+            /* background: linear-gradient(-45deg, #e3eefe 0%, #efddfb 100%);*/
+            transition: all 0.5s ease-in-out;
+            opacity: 75%;
+            font-family: "Mukta Malar" !important;
+            z-index: 2;
+            }
+            #active:checked ~ .wrapper{
+            /*left: 0;*/
+            right:0;
+            }
+            .menu-btn{
+            position: fixed;
+            z-index: 3;
+            right: 20px;
+            /*left: 20px; */
+            top: 20px;
+            height: 50px;
+            width: 50px;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            /*color: #fff;*/
+            /*background: linear-gradient(90deg, #f92c78, #4114a1);*/
+            /* background: linear-gradient(375deg, #1cc7d0, #2ede98); */
+            /* background: linear-gradient(-45deg, #e3eefe 0%, #efddfb 100%); */
+            transition: all 0.3s ease-in-out;
+            }
+            .menu-btn span,
+            .menu-btn:before,
+            .menu-btn:after{
+                content: "";
+                position: absolute;
+                top: calc(50% - 1px);
+                left: 30%;
+                width: 40%;
+                border-bottom: 2px solid orange;
+                transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+            }
+            .menu-btn:before{
+            transform: translateY(-8px);
+            }
+            .menu-btn:after{
+            transform: translateY(8px);
+            }
+
+            .close {
+                z-index: 999;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                transition: .6s;
+            }
+
+            /* closing animation */
+            #active:checked + .menu-btn span {
+                transform: scaleX(0);
+            }
+            #active:checked + .menu-btn:before {
+            transform: rotate(45deg);
+            border-color: orange;
+            }
+            #active:checked + .menu-btn:after {
+            transform: rotate(-45deg);
+            border-color: orange;
+            }
+            .wrapper ul{
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            height: 90%;
+            transform: translate(-50%, -50%);
+            list-style: none;
+            text-align: center;
+            }
+            .wrapper ul li{
+            height: 10%;
+            margin: 15px 0;
+            }
+            .wrapper ul li a{
+            text-decoration: none;
+            font-size: 30px;
+            font-weight: 500;
+            padding: 5px 30px;
+            color: #fff;
+            border-radius: 50px;
+            position: absolute;
+            line-height: 50px;
+            margin: 5px 30px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            transition: transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+            }
+            .wrapper ul li a:after{
+            position: absolute;
+            content: "";
+            background: orange; 
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            border-radius: 0px;
+            transform: scaleY(0);
+            z-index: -1;
+            transition: transform 0.3s ease;
+            }
+            .wrapper ul li a:hover:after{
+            transform: scaleY(1);
+            }
+            .wrapper ul li a:hover{
+            color: #282E34;
+            }
+            input[type="checkbox"]{
+            display: none;
+            }
+            .content{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            text-align: center;
+            width: 100%;
+            color: #202020;
+            }
+            .content .title{
+            font-size: 40px;
+            font-weight: 700;
+            }
+            .content p{
+            font-size: 35px;
+            font-weight: 600;
+            }
+
+            #active:checked ~ .wrapper ul li a{
+            opacity: 1;
+            }
+            .wrapper ul li a{
+            transition: opacity 1.2s, transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+            transform: translateX(100px);
+            }
+            #active:checked ~ .wrapper ul li a{
+                transform: none;
+                transition-timing-function: ease, cubic-bezier(.1,1.3,.3,1); /* easeOutBackを緩めた感じ */
+            transition-delay: .6s;
+            transform: translateX(-100px);
+            }
+
+             
+            .caption {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            text-align: center;
+            color: orange;
+            z-index: 900;
+            }
+
+            .caption span.border {
+            opacity: 1.5;
+            background-color: orange;
+            color: #fff;
+            padding: 18px;
+            font-size: 25px;
+            letter-spacing: 10px;
+            z-index: 900;
+            }
+ 
+            .slide {
+            color: white;
+            background-color:orange;
+            text-align:right;
+            padding:50px 100px;
+            text-align: justify;
+            position:relative;
+            z-index: 1;
+            }
+
+            .slide2 {
+            color: white;
+            background-color: orange;
+            text-align:right;
+            padding:50px 200px;
+            text-align: justify;
+            position:relative;
+            z-index: 1;
+            } 
+
+
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css');
+
+        .footer-social-icons {
+            width: 300px;
+            display:block;
+            margin: 0 auto;
+        }
+        .social-icon {
+            color: #fff;
+        }
+        ul.social-icons {
+            margin-top: 10px;
+        }
+        .social-icons li {
+            vertical-align: top;
+            display: inline;
+            height: 100px;
+        }
+        .social-icons a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .fa-facebook {
+            padding:10px 14px;
+            -o-transition:.5s;
+            -ms-transition:.5s;
+            -moz-transition:.5s;
+            -webkit-transition:.5s;
+            transition: .5s; 
+            background-color: orange; 
+            z-index: 1;  
+        }
+        .fa-facebook:hover {
+            background-color: white; 
+            color: orange;
+        }
+        .fa-twitter {
+            padding:10px 14px;
+            -o-transition:.5s;
+            -ms-transition:.5s;
+            -moz-transition:.5s;
+            -webkit-transition:.5s;
+            transition: .5s;
+            background-color: orange; 
+        }
+        .fa-twitter:hover {
+            background-color: white;
+            color: orange;
+        } 
+        .fa-linkedin {
+            padding:10px 14px;
+            -o-transition:.5s;
+            -ms-transition:.5s;
+            -moz-transition:.5s;
+            -webkit-transition:.5s;
+            transition: .5s;
+            background-color: orange;
+        }
+        .fa-linkedin:hover {
+            background-color: white;
+            color: orange;
+        }
+        .fa-instagram {
+            padding:10px 14px;
+            -o-transition:.5s;
+            -ms-transition:.5s;
+            -moz-transition:.5s;
+            -webkit-transition:.5s;
+            transition: .5s;
+            background-color: orange;
+        }
+        .fa-instagram:hover {
+            background-color: white; 
+            color: orange;
+        }
+
+        .text {
+        color: #282E34;
+        text-align: center;
+        font-family: "Mukta Malar" !important;
+        margin: 100px;
+        padding: 100px;
+        }
+
+    </style>
+    </head>
+
+    <body>
+
+      <input type="checkbox" id="active">
+      <label for="active" class="menu-btn"><span></span></label>
+      <label for="active" class="close"></label>
+      <div class="wrapper">
+      <ul>
+        <li><a href="https://faded-cities.github.io/faded-cities/index.html">Home</a></li>
+        <li><a href="https://faded-cities.github.io/faded-cities/TripoliLanding.html">Explore</a></li>
+        <li><a href="https://faded-cities.github.io/faded-cities/Goals.html">Goals</a></li>
+      </ul>
+      </div> 
+
+      
+
+        <div class="text">
+            <h1 style="font-size: 72px">Tripoli</h1> 
+            <p> <br /> </p>
+            <h2 style="font-size: 48px">City of Surreal Radicalism</h2> 
+            <p> <br /> </p>
+            
+            <p style="font-size: 22px; text-align: justify;">There is a city past the final olive grove on the highway north of Beirut. The road’s many 
+              twists and turns might have you believe that the city is not actually there at all. It will however eventually emerge on the 
+              horizon after the highway finally gives way to the treasure that it has been keeping secret.
+              </p>
+
+              <p> <br /> </p>
+
+              </div>
+
+              
+ 
+          <div class="text">
+             
+            <p style="font-size: 18px; text-align: justify;">As you pass the blue windmills that line the road past the seaside town of Koura, 
+            the eucalyptus and olive trees are replaced by reeds, conifers and coastal plants. Gone too are the garish billboards 
+            advertising whiskey and high-end fashion that line the highway in the haphazard sprawl north of Beirut that feels a bit like a 
+            1980’s mafia film-set.</p>
+           
+            <p> <br /> </p>
+            
+          <p style="font-size: 18px; text-align: justify;">Many would advise you not to go to Tripoli, Lebanon at all. In fact, the first time I ever went to Tripoli was by accident. I was 19 
+              in 2013 doing a year abroad in Beirut and I had planned to go to the Lebanese mountains with a friend on one of the ubiquitous 
+              mini-buses that are found throughout Lebanon. I was told that the minibus would take a turn well before Tripoli and I would avoid 
+              the warring hellscape that I had been led to believe Tripoli was. For whatever reason I ended up in Tripoli alone (my friend had 
+              bailed the day before) and my fascination with the city has endured to this day.</p>
+
+              <p> <br /> </p>
+
+          <p style="font-size: 18px; text-align: justify;">Tripoli is not an immediately beautiful city. Its years of poverty and violence are evident in the half-finished, 
+            or half-destroyed concrete tower blocks that surround the city. Once stately Ottoman buildings sit dwarfed by new apartment blocks financed 
+            with Gulf petro-dollars.  The noises of the centre of the city clash with the unsettling quiet found in the rubbish strewn scrubland that 
+            surrounds the city proper. It is more a city whose beauty lies in its brutality, its lived-in feel and above all, the sheer volume of 
+            historic buildings found throughout the city.
+          </p>
+
+            <p> <br /> </p>
+
+          <p style="font-size: 18px; text-align: justify;">The first over-riding impression you get of Tripoli is how Arab it feels. This might seem like a strange 
+            statement given the geography of the city but anyone who knows its glamorous sister city to the south would know that Beirut has its 
+            very own identity that is not entirely western nor entirely eastern. There are no hipster coffee shops or shopping malls filled with 
+            wealthy Lebanese families having lunch at French style brasseries (although at the time of writing, most of Beirut’s swanky Beirut Souks 
+            mall had closed due to the two-year long economic catastrophe that has gripped the country). The streets in the centre of Tripoli remain 
+            filled with colonial style French and Ottoman gems that appear mostly unlived in. The shops are largely commercial and deal with the 
+            everyday lives of Tripoli’s inhabitants such as bakers, mechanics and clothes shops. 
+          </p>
+
+          <p> <br /> </p>
+
+          <p style="font-size: 18px; text-align: justify;">It is also a radical city. The Ottoman city reluctantly joined the French made modern Lebanese Republic in 1943 
+            and more recently, its history has been coloured by Salafist cells loyal to Jubhat Al-Nusra involved in deadly clashes with the Lebanese 
+            army. Clashes between Sunnis and Alawites have also marred the city’s recent history. In 2019 Tripoli reasserted itself as a place of 
+            revolution. Once a byword for feudalist style politics, Tripoli’s people spearheaded a secular revolution that attempted to oust 
+            Lebanon’s corrupt political class from power. The largest monument to the attempted revolution is the red painted building overlooking 
+            the Sahet al-Nour (Square of light) which proclaims Tripoli as ‘the city of the Revolution’. 
+          </p>
+
+          <p> <br /> </p>
+
+          <p style="font-size: 18px; text-align: justify;">Despite its many problems, there is a surprising cosmopolitan feel to it. Tripoli is lined with wide, tree lined 
+            boulevards leading to the once separate, Mina area. On the boulevards sit attractive art-deco style villas and apartment blocks in varying 
+            states of disrepair that hint at a more glamorous past. Its streets are filled with restaurants and shops that have been killed off in many 
+            countries with functioning postal systems and Amazon. Old men in Italian style jackets sip Turkish coffee and gossip together as men in the 
+            traditional Arab Kufiyah pass by alongside women in western and eastern fashions.
+          </p>
+
+          <p> <br /> </p>
+
+          <p style="font-size: 18px; text-align: justify;">Tripoli is a city of two parts – the closed, distinctly Arab feeling city inland which grew up 
+            around the castle (Qala’a) and the maritime centre of the Mina (port). Unlike the centre which includes areas such as Bab el Hadid, Bab El Remel 
+            and El Ghuraba; the Mina has an outward feel to it with a long corniche and large port that is now as infamous for people trying to leave 
+            Lebanon to Cyprus as the goods that enter through it. Its buildings are more European in style, perhaps as a result of the large Greek community 
+            that once called it home. A large proportion of Mina’s population is still Greek Orthodox and its myriad of alleyways and squares are home to 
+            lively bars during the weekend which mark a change from the conservative feel of the city inland where alcohol is not sold. 
+          </p>
+
+          <p> <br /> </p>
+
+          <p style="font-size: 18px; text-align: justify;">Tripoli’s vibrant, multi-layered history is told through its architecture. There are few museums 
+            here; the city is too preoccupied with surviving in the present to think too much about honouring its past. The city is home to some of the 
+            world’s best preserved Mamluk architecture in its 7th century souk. Its spartan style of architecture and narrow streets are largely a result of 
+            the need to defend itself from Crusader attacks coming from the Mediterranean. Tripoli’s castle sits as an austere labyrinth of tunnels atop the 
+            hill to which the original city was named and has been home to Crusader, Mamluk and Ottoman owners. 
+          </p>
+
+          <p> <br /> </p>
+
+          <p style="font-size: 18px; text-align: justify;">Since the 7th century Tripoli has been the fiefdom of Lebanon’s Sunnis. The city proper is home 
+            to over 15 mosques and 10 madrassas (Islamic schools) which are testament to the many Islamic civilisations including Mamluk and Ottoman that 
+            have called Tripoli home. In the twentieth century, money from the Persian Gulf saw newer mosques constructed whose simpler, Gulf Arab style 
+            designs clash with the more ornate Ottoman styles of its older mosques. The most prominent of the newer mosques is the Al Shukr mosque which 
+            sits at the end of the Corniche and is a mini version of the blue domed mosque that sits in Beirut’s Martyr’s Square (Sahat al-Shahada).
+          </p>
+
+          <p> <br /> </p>
+       
+          <p style="font-size: 18px; text-align: justify;">The many churches in Tripoli are testament to the Christian confessions that once and still call 
+            Tripoli home and are a symbol of the city’s multi-confessional history. Although like many Middle Eastern cities that have seen their Christian 
+            populations dwindle because of a variety of reasons, Latin, Greek Orthodox and Protestant churches stand behind often closed gates as a sign of 
+            the once large Christian community in the city, especially in the traditionally Christian neighbourhood of Al-Zaharieh. 
+          </p>
+
+          <p> <br /> </p>
+
+          <p style="font-size: 18px; text-align: justify;">Tripoli’s golden moment in recent, secular history came in 1955 when celebrated Brazilian architect, 
+            Oscar Niemeyer was commissioned to design a world fair on the outskirts of the city. Alongside the flooding of the Abu Ali river in 1955 which 
+            greatly altered the layout of the old city, the construction of the fair cleared many old villas and citrus groves that once surrounded the city 
+            and accelerated the moving of Tripoli’s inhabitants to the new grid-lined avenues leading away from the old city. 
+          </p>
+
+          <p> <br /> </p>
+
+          <p style="font-size: 18px; text-align: justify;">The day when the fair would welcome millions of visitors to a vibrant, modern Lebanon never came. 
+            As a result of the pending Civil war and mismanagement, the World Fair was never fully completed. What remains is something quite haunting, the 
+            white seats of the outdoor theatre remain intact as if waiting for the visitors that never came. The fair is now ringed by high-rise apartment 
+            blocks and mosques and the brutalist, concrete architecture, signs of a more idealistic future, are slowly falling into the dense foliage of the 
+            park. The echoes from gangs of youths (or anyone who wants to give it a try) shouting in the domed theatre add to the surreal, other-worldly feel 
+            of the fair.  
+          </p>
+
+          <p> <br /> </p>
+
+          <p style="font-size: 18px; text-align: justify;">Tripoli is a totally ungentrified city. Because of its poverty, dysfunctional politics and 
+            marginalisation it has been spared the development projects of Beirut, some good, some bad that have left its downtown, although beautifully 
+            restored - largely deserted. Its central souk is a working market-place that bustles with people going about their daily business.  Its once 
+            grand Ottoman buildings in the centre are home to coffee houses and banks. Children fire toy guns in the streets as teen boys zip past on 
+            scooters with cans of diet 7-up and cigarettes.   
+          </p>
+
+          <p> <br /> </p>
+
+          <p style="font-size: 18px; text-align: justify;">The alleyways of the Mina area are any bit as cool as the hippest streets in the hip Beiruti 
+            quarters of Mar Mikhael and Gemmayze. Its 19th century, French colonial style buildings in its centre could be as glamorous as the gated 
+            apartments of Beirut’s elite in Ashrafieh. Tripoli deserves to be seen as a city in its own right along with its history that has made it is 
+            quite distinct from Beirut’s.   
+          </p>
+
+          <p> <br /> </p>
+
+          <p style="font-size: 18px; text-align: justify;">Having explored Tripoli I realise it is perhaps the perfect example of a truly surrealist city. 
+            Its beauty lies in the brutality of its juxtaposed architecture and dream-like scenery. Its decrepit buildings from less turbulent, more 
+            prosperous times jostle for attention amongst the urban sprawl of the 20th and 21st centuries. It is also a victim of its circumstances, it is 
+            judged for its poverty and extremism by a country that has neglected and never truly accepted it.  
+          </p>
+
+          <p> <br /> </p>
+
+          <p style="font-size: 18px; text-align: justify;">Of course, arty pictures of Brutalist architecture do not and will not make Tripoli a more 
+            liveable city. One of the purposes of this exploration has been to explore how this surreal beauty can be kept and exploitedused to create a 
+            more liveable, sustainable city.   
+          </p>
+
+          <p> <br /> </p>
+
+          <p style="font-size: 18px; text-align: justify;">Researching the histories and building dates of many of Tripoli’s buildings has proven much harder 
+            than anticipated. Literature on the history of Tripoli is relatively spartan in English, French and Arabic. What literature does exist, with 
+            notable exceptions such as Salam-Leibech’s thorough and fascinating The Mamluk Architecture of Tripoli, generally does not specifically deal 
+            with the city’s architectural history. Much of the documentation therefore has relied on word of mouth and piecing together what we could through 
+            our own observations as well as being passed from contact to contact until we found the necessary information.    
+          </p>
+
+          <p> <br /> </p>
+
+          <p style="font-size: 18px; text-align: justify;">Finding official documentation through government buildings proved to be fruitless. From Faded Cities’ 
+            own efforts, the Lebanese government, in particular the local Tripoli government office does not appear to hold any systemised files that 
+            document the provenance of Tripoli’s buildings. In the absence of official documentation and surveyance, we hope our exploration will not only 
+            provide an artistic perspective on Tripoli’s architectural gems, but also act as a reliable record of its varied and diverse architectural 
+            history against the ever growing threat of 21st century development. 
+          </p>
+
+          <p> <br /> </p>
+
+          <div class="carousel"> 
+            <div class="carousel--item three"> 
+             
+              <iframe width="100%" height="600px" src="https://www.youtube.com/embed/xYKmKAkHZNg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+             
+            </div>
+          </div>
+
+        </div>
+
+            <div class="slide">
+              <div class="slide">
+                  <div class="footer-social-icons">
+                    <ul class="social-icons">
+                        <li><a href="" class="social-icon"> <i class="fa fa-facebook"></i></a></li>
+                        <li><a href="" class="social-icon"> <i class="fa fa-twitter"></i></a></li> 
+                        <li><a href="" class="social-icon"> <i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="" class="social-icon"> <i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>  
+
+    </body>
+       
+</html>
